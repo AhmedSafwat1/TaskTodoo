@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class TodooComponent implements OnInit {
   public user = new User("","","")
+  public flagLoad = true
   public id;
   public title:string = ""
   public message = ""
@@ -36,6 +37,7 @@ export class TodooComponent implements OnInit {
   }
   SetDate(user)
   {
+    this.flagLoad = false
     console.log(user)
     this.user = user
   }
@@ -43,6 +45,7 @@ export class TodooComponent implements OnInit {
   {
     console.log(e)
     this.router.navigate(['errors']);
+    this.flagLoad = false
   }
   saveTodo()
   {

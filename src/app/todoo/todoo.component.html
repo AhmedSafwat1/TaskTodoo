@@ -1,30 +1,37 @@
-<!-- nav bar -->
-<app-nav-bar [auth]="true" [username]="user.name"></app-nav-bar>
-<!--  -->
-<div class="container">
-  <ng-container *ngIf="flag != 0">
-    <div class="alert p-5 mt-2" [ngClass]="{'aler-danger': flag == 1,'alert-primary': flag == 2}">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      {{message}}
-    </div>
-  </ng-container>
-  
-  <h2 class="h1 text-center mt-5">
-    Todoo List
-  </h2>
-  <div class="mt-5">
-    <input type="text" class="form-control form-control-lg" (keyup.enter)="saveTodo()" [(ngModel)]="title" placeholder="Write Todoo Item">
+<ng-container *ngIf="flagLoad; else elseTemplate">
+  <div class="load text-center mt-5">
+    <img src="https://qrinfopoint.com/img/loading.gif" width="400" >
   </div>
-  <ng-container *ngIf="user.todoList.length > 0; else elseTemplate">
-      <ul class="list-group">
-          <li class="list-group-item" *ngFor="let item of user.todoList">{{item}}</li>
-      </ul>
-  </ng-container>
-  <ng-template #elseTemplate>
-      <div class="alert alert-warning" role="alert">
-          Empty not have any items
+</ng-container>
+<ng-template #elseTemplate>
+    <!-- nav bar -->
+  <app-nav-bar [auth]="true" [username]="user.name"></app-nav-bar>
+  <!--  -->
+  <div class="container">
+    <ng-container *ngIf="flag != 0">
+      <div class="alert p-5 mt-2" [ngClass]="{'aler-danger': flag == 1,'alert-primary': flag == 2}">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        {{message}}
       </div>
-  </ng-template>
-  
-  
-</div>
+    </ng-container>
+    
+    <h2 class="h1 text-center mt-5">
+      Todoo List
+    </h2>
+    <div class="mt-5">
+      <input type="text" class="form-control form-control-lg" (keyup.enter)="saveTodo()" [(ngModel)]="title" placeholder="Write Todoo Item">
+    </div>
+    <ng-container *ngIf="user.todoList.length > 0; else elseTemplate">
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let item of user.todoList">{{item}}</li>
+        </ul>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <div class="alert alert-warning" role="alert">
+            Empty not have any items
+        </div>
+    </ng-template>
+    
+    
+  </div>
+</ng-template>
