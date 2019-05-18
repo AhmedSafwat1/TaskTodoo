@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.css";
+
+.login-form
+{
+    width: 50%;
+    margin: auto;
+
+}
+@media(max-width:992px)
+{
+    .login-form
+    {
+        width: 100%;
+    }
+}
+.form-control.ng-invalid.ng-touched
+{
+    border: 2px solid red;
+} 
+.form-control.ng-valid.ng-touched
+{
+    border: 2px solid green;
+}

@@ -1,0 +1,51 @@
+<!-- nav bar -->
+<app-nav-bar [auth]="false" [username]=""></app-nav-bar>
+<!-- ============ -->
+<div class="container">
+  <div class="login-form mt-5 mr-auto">
+      <ng-container  *ngIf="errors.length>0">
+          <div class="alert alert-danger">
+           <p *ngFor="let item of errors">{{item}}</p>
+          </div>
+       </ng-container>
+      <h1 class="text-muted text-center mb-5">Login To Todoo</h1>
+      <form #form="ngForm" form>
+          <div class="form-group mb-4">
+              <label for="exampleInputEmail1 " class="text-muted h4 ">Email address</label>
+              <input type="email" class="form-control form-control-lg" 
+              id="exampleInputEmail1" aria-describedby="emailHelp"
+               placeholder="Enter email" name="email" required
+                ngModel #email="ngModel" email [(ngModel)]="user.email">  
+               <div  *ngIf="email.touched && email.invalid" class="alert alert-danger mt-2">
+                  <ng-container *ngIf="email.errors?.required">
+                    error must enter the password
+                    <br>
+                  </ng-container>
+                  <ng-container *ngIf="email.errors?.email">
+                      error must enter the Email valid
+                      <br>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="form-group mb-4">
+              <label for="exampleInputPassword1  " class="text-muted h4">Password</label>
+              <input type="password" class="form-control form-control-lg" 
+              id="exampleInputPassword1" placeholder="Password" name="password" required
+              ngModel  #password="ngModel" [(ngModel)]="user.password"
+              >
+              <div  *ngIf="password.touched && password.invalid" class="alert alert-danger mt-2">
+                  <ng-container *ngIf="password.errors?.required">
+                    error must enter the password
+                    <br>
+                  </ng-container>
+                </div>
+            </div>
+            <div class="button">
+              <button type="submit" [disabled]="form.invalid || flag" (click)="login()" class="btn btn-primary btn-block btn-lg">Submit</button>
+            </div>
+            <p *ngIf="flag" class="text-center mt-3">
+                <img src="https://qrinfopoint.com/img/loading.gif" width="100" >
+              </p>
+        </form>
+  </div>
+</div>
